@@ -84,8 +84,20 @@ public class FlightSearchTests {
     }
 
     @Test
+    public void testSearchSeatsByClass()
+    {
+        List<Flight> matchingFlights = allFlights.searchSeatsByClass("Economy Class", 10).getFlightList();
+        Assert.assertEquals(2, matchingFlights.size());
+    }
+
+    @Test
     public void getTotalTicketPrice() throws Exception {
         int price = allFlights.getTotalTicketPrice("Economy Class",2);
         Assert.assertEquals(12000, price);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void getTotalTicketPriceWhenNegativeSeatsGiven() throws Exception {
+        int price = allFlights.getTotalTicketPrice("Economy Class",-2);
     }
 }

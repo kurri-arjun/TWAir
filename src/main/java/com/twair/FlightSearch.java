@@ -77,6 +77,11 @@ public class FlightSearch {
     }
 
     public int getTotalTicketPrice (String classInfo, int numberOfSeats){
+
+        if("".equals(classInfo) || (classInfo == null) || numberOfSeats <= 0)
+        {
+            throw new IllegalArgumentException(" Illegal Argument passed as input");
+        }
         int price = 0;
 
         for (Flight flight : flightList) {
