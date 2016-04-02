@@ -75,4 +75,16 @@ public class FlightSearch {
         }
         return new FlightSearch(matchingFlights);
     }
+
+    public int getTotalTicketPrice (String classInfo, int numberOfSeats){
+        int price = 0;
+
+        for (Flight flight : flightList) {
+            if(flight.getAvailableSeatsByClass(classInfo) >= numberOfSeats)
+            {
+                price = flight.getPrice(classInfo,numberOfSeats);
+            }
+        }
+        return price;
+    }
 }

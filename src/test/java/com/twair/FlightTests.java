@@ -4,9 +4,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.Calendar;
-import java.util.GregorianCalendar;
-import java.util.HashMap;
+import java.util.*;
 
 public class FlightTests {
     private String source;
@@ -18,17 +16,20 @@ public class FlightTests {
 
     @Before
     public void setUp() throws Exception {
-        HashMap<String, Integer> classesInfo = new HashMap<>();
-        classesInfo.put("Business Class", 10);
-        classesInfo.put("First Class", 21);
-        classesInfo.put("Economy Class", 103);
+        TravellingClass bussinessClass = new TravellingClass("Business Class", 15, 10000);
+        TravellingClass economyClass = new TravellingClass("Economy Class", 195, 6000);
+        TravellingClass firstClass = new TravellingClass("First Class", 15, 15000);
+        List<TravellingClass> classInfo= new ArrayList<>();
+        classInfo.add(bussinessClass);
+        classInfo.add(economyClass);
+        classInfo.add(firstClass);
         source = "TestSource";
         dest = "TestDestination";
         plane = new Plane("type", 30);
         departure = new GregorianCalendar(2016,3,10, 9, 10, 0);
         arrival = new GregorianCalendar(2016,3,10, 10, 10, 0);
         flightInfo = new Flight("F001",source, dest, plane, departure, arrival);
-        flightInfo.setClassesAndSeatsInfo(classesInfo);
+        flightInfo.setClassesAndSeatsInfo(classInfo);
     }
 
     @Test
@@ -74,8 +75,8 @@ public class FlightTests {
     @Test
     public void getSeatsByClass()
     {
-        Assert.assertEquals(10,flightInfo.getAvailableSeatsByClass("Business Class"));
-        Assert.assertEquals(21,flightInfo.getAvailableSeatsByClass("First Class"));
-        Assert.assertEquals(103,flightInfo.getAvailableSeatsByClass("Economy Class"));
+        Assert.assertEquals(15,flightInfo.getAvailableSeatsByClass("Business Class"));
+        Assert.assertEquals(15,flightInfo.getAvailableSeatsByClass("First Class"));
+        Assert.assertEquals(195,flightInfo.getAvailableSeatsByClass("Economy Class"));
     }
 }

@@ -28,6 +28,7 @@ public class TwAirApplication {
 			FlightSearch matchingFlights = DataSource.instance().fetchFlights().byLocation(searchForm.getFrom(), searchForm.getTo());
 			matchingFlights = matchingFlights.byDeparture(searchForm.getDepartureDate());
 			matchingFlights = matchingFlights.searchSeatsByClass(searchForm.getClassInfo(), searchForm.getNumberSeats());
+			int price = matchingFlights.getTotalTicketPrice(searchForm.getClassInfo(), searchForm.getNumberSeats());
 			model.addAttribute("flights", matchingFlights.getFlightList());
 		}catch (Exception e) {
 			e.printStackTrace();

@@ -20,10 +20,20 @@ public class FlightSearchTests {
         departure = new GregorianCalendar(2016,3,10, 9, 10, 0);
         arrival = new GregorianCalendar(2016,3,10, 10, 10, 0);
 
+        TravellingClass bussinessClass = new TravellingClass("Business Class", 15, 10000);
+        TravellingClass economyClass = new TravellingClass("Economy Class", 195, 6000);
+        TravellingClass firstClass = new TravellingClass("First Class", 15, 15000);
+        List<TravellingClass> classInfo= new ArrayList<>();
+        classInfo.add(bussinessClass);
+        classInfo.add(economyClass);
+        classInfo.add(firstClass);
+
         Plane plane1 = new Plane("type1", 10);
         Flight flight1 = new Flight("F001", source, destination, plane1, new GregorianCalendar(2016,3,10, 9, 10, 0), new GregorianCalendar(2016,3,10, 11, 10, 0));
+        flight1.setClassesAndSeatsInfo(classInfo);
         Flight flight2 = new Flight("F002", "TestSource1", destination, plane1, new GregorianCalendar(2016,4,10, 9, 10, 0), new GregorianCalendar(2016,4,10, 11, 10, 0));
         Flight flight3 = new Flight("F003", source, destination, plane1, new GregorianCalendar(2016,4,11, 9, 10, 0), new GregorianCalendar(2016,4,11, 11, 10, 0));
+        flight3.setClassesAndSeatsInfo(classInfo);
         List<Flight> flightList = new ArrayList<>();
         flightList.add(flight1);
         flightList.add(flight2);
@@ -71,5 +81,11 @@ public class FlightSearchTests {
     @Test(expected=IllegalArgumentException.class)
     public void numberOfSeatsCannotBeNegative() throws Exception {
         allFlights.byAvailableSeats(-10);
+    }
+
+    @Test
+    public void getTotalTicketPrice() throws Exception {
+        int price = allFlights.getTotalTicketPrice("Economy Class",2);
+        Assert.assertEquals(12000, price);
     }
 }

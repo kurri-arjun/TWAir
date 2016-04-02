@@ -16,6 +16,7 @@ public class Flight {
     private ArrayList<TravellingClass> availableClasses = new ArrayList<>();
     private int economyClassSeats;
     private int firstClassSeats;
+    private int price = 0;
 
     public Flight(String number, String source, String destination, Plane plane, Calendar departure, Calendar arrival) throws Exception {
         this.source = source;
@@ -26,12 +27,9 @@ public class Flight {
         setScheduleTime(departure, arrival);
     }
 
-    public void setClassesAndSeatsInfo(HashMap<String, Integer> availableClasses)
+    public void setClassesAndSeatsInfo(List<TravellingClass> classInfo)
     {
-        for (String key:availableClasses.keySet())
-        {
-            this.availableClasses.add(new TravellingClass(key.toString(),availableClasses.get(key)));
-        }
+        availableClasses = (ArrayList)classInfo;
     }
 
     public boolean canBook(Integer numberOfSeats) {
@@ -58,6 +56,10 @@ public class Flight {
         return arrivalTime;
     }
 
+    public int getPrice() {
+        return price;
+    }
+
     private void setScheduleTime(Calendar departureTime, Calendar arrivalTime) throws Exception {
         if(departureTime.after(arrivalTime)) {
             throw new Exception("departure time cannot be greater than arrival time");
@@ -77,5 +79,16 @@ public class Flight {
             }
         }
         return noOfSeats;
+    }
+
+    public int getPrice(String classs, int numberOfSeats){
+        for(TravellingClass travellingInfo : this.availableClasses)
+        {
+            if(classs.equals(travellingInfo.getTravellingClass()))
+            {
+                price =  travellingInfo.getPrice()*numberOfSeats;
+            }
+        }
+        return price;
     }
 }
