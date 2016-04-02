@@ -36,19 +36,21 @@ public class DataSource {
         List<Plane> planes = fetchPlanes();
         List<String> locations = fetchLocations();
 
-        TravellingClass bussinessClass = new TravellingClass("Business Class", 15, 10000);
-        TravellingClass economyClass = new TravellingClass("Economy Class", 15, 6000);
-        TravellingClass firstClass = new TravellingClass("First Class", 15, 15000);
-        List<TravellingClass> classInfo= new ArrayList<>();
-        classInfo.add(bussinessClass);
-        classInfo.add(economyClass);
-        classInfo.add(firstClass);
+        TravellingClass bussinessClass = new TravellingClass(SeatTypes.BUSINESSCLASS, 15, 10000);
+        TravellingClass economyClass = new TravellingClass(SeatTypes.ECONOMYCLASS, 195, 6000);
+        TravellingClass firstClass = new TravellingClass(SeatTypes.FIRSTCLASS, 15, 15000);
 
         Flight flight1 = new Flight("F001", locations.get(0), locations.get(1), planes.get(0), new GregorianCalendar(2016,3,10, 9, 10, 0), new GregorianCalendar(2016,3,10, 9, 12, 0));
-        flight1.setClassesAndSeatsInfo(classInfo);
+        flight1.setClassesAndSeatsInfo(bussinessClass);
+        flight1.setClassesAndSeatsInfo(economyClass);
+        flight1.setClassesAndSeatsInfo(firstClass);
+
         Flight flight2 = new Flight("F002", locations.get(0), locations.get(1), planes.get(1), new GregorianCalendar(2016,3,11, 9, 10, 0), new GregorianCalendar(2016,3,11, 9, 12, 0));
+
         Flight flight3 = new Flight("F003", locations.get(0), locations.get(1), planes.get(2), new GregorianCalendar(2016,3,12, 9, 10, 0), new GregorianCalendar(2016,3,12, 9, 12, 0));
-        flight3.setClassesAndSeatsInfo(classInfo);
+        flight3.setClassesAndSeatsInfo(bussinessClass);
+        flight3.setClassesAndSeatsInfo(economyClass);
+        flight3.setClassesAndSeatsInfo(firstClass);
 
         flightList.add(flight1);
         flightList.add(flight2);

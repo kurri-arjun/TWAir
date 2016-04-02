@@ -4,18 +4,14 @@ package com.twair;
  * Created by sangeeth on 01-04-2016.
  */
 public class TravellingClass {
-    public int getPrice() {
-        return price;
-    }
 
     private final int price;
-
     private String travellingClass;
     private int availableSeats;
 
 
-    public TravellingClass(String travellingClass, int availableSeats, int price) {
-        this.travellingClass = travellingClass;
+    public TravellingClass(SeatTypes travellingClass, int availableSeats, int price) {
+        this.travellingClass = travellingClass.getClassName();
         this.availableSeats = availableSeats;
         this.price = price;
     }
@@ -27,5 +23,8 @@ public class TravellingClass {
     public int getAvailableSeats()
     {
         return this.availableSeats;
+    }
+    public int getPrice() {
+        return price;
     }
 }

@@ -27,9 +27,9 @@ public class Flight {
         setScheduleTime(departure, arrival);
     }
 
-    public void setClassesAndSeatsInfo(List<TravellingClass> classInfo)
+    public void setClassesAndSeatsInfo(TravellingClass classsinfo)
     {
-        availableClasses = (ArrayList)classInfo;
+        availableClasses.add(classsinfo);
     }
 
     public boolean canBook(Integer numberOfSeats) {

@@ -16,20 +16,19 @@ public class FlightTests {
 
     @Before
     public void setUp() throws Exception {
-        TravellingClass bussinessClass = new TravellingClass("Business Class", 15, 10000);
-        TravellingClass economyClass = new TravellingClass("Economy Class", 195, 6000);
-        TravellingClass firstClass = new TravellingClass("First Class", 15, 15000);
-        List<TravellingClass> classInfo= new ArrayList<>();
-        classInfo.add(bussinessClass);
-        classInfo.add(economyClass);
-        classInfo.add(firstClass);
+        TravellingClass bussinessClass = new TravellingClass(SeatTypes.BUSINESSCLASS, 15, 10000);
+        TravellingClass economyClass = new TravellingClass(SeatTypes.ECONOMYCLASS, 195, 6000);
+        TravellingClass firstClass = new TravellingClass(SeatTypes.FIRSTCLASS, 15, 15000);
+
         source = "TestSource";
         dest = "TestDestination";
         plane = new Plane("type", 30);
         departure = new GregorianCalendar(2016,3,10, 9, 10, 0);
         arrival = new GregorianCalendar(2016,3,10, 10, 10, 0);
         flightInfo = new Flight("F001",source, dest, plane, departure, arrival);
-        flightInfo.setClassesAndSeatsInfo(classInfo);
+        flightInfo.setClassesAndSeatsInfo(bussinessClass);
+        flightInfo.setClassesAndSeatsInfo(economyClass);
+        flightInfo.setClassesAndSeatsInfo(firstClass);
     }
 
     @Test

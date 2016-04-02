@@ -11,7 +11,7 @@ public class TravellingClassTests
     @Test
     public void testTravellingClass()
     {
-        TravellingClass cls = new TravellingClass("Business Class", 15, 6000);
+        TravellingClass cls = new TravellingClass(SeatTypes.BUSINESSCLASS, 15, 6000);
         Assert.assertEquals("Business Class", cls.getTravellingClass());
         Assert.assertEquals(15, cls.getAvailableSeats());
         Assert.assertEquals(6000, cls.getPrice());
